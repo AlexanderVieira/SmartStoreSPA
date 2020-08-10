@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "SmartStore"
+    }
+  },
+  "defaultProject": "SmartStore",
+  "cli": {
+    "analytics": "a026ac9c-c901-4f5e-a019-9a4d11aeb53f"
+  }
 }
