@@ -1,5 +1,8 @@
 # SmartStore
 
+Objetivo: integrar com Sistema Digital Embarcado.
+Proposta: automatizar processo de pagamento e reduzir filas nos pontos de vendas.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
 
 ## Development server
