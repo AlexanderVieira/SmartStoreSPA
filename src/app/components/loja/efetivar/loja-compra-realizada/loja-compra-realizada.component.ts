@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LojaCompraRealizadaComponent implements OnInit {
 
+  public pedidoId: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.pedidoId = sessionStorage.getItem("pedidoId");
   }
 
 }

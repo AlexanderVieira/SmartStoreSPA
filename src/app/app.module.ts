@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 //import { TruncateModule } from 'ng2-truncate';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -40,6 +41,7 @@ import { PedidoService } from './services/pedido/pedido.service';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     AppRoutingModule,
     HttpClientModule,
+    FormsModule
     //TruncateModule,
   ],
   providers: [UsuarioService, ProdutoService, PedidoService],

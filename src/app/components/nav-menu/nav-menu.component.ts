@@ -22,9 +22,9 @@ export class NavMenuComponent implements OnInit {
     this.isExpanded = false;
   }
 
-toggle() {
+  toggle() {
     this.isExpanded = !this.isExpanded;
-}
+  }
 
 public usuarioLogado(): boolean {
   return this.usuarioService.usuario_autenticado();
