@@ -8,6 +8,7 @@ import { PesquisaProdutoComponent } from './components/produto/pesquisa-produto/
 import { LojaProdutoComponent } from './components/loja/produto/loja-produto.component';
 import { LojaEfetivarCompraComponent } from './components/loja/efetivar/loja-efetivar-compra/loja-efetivar-compra.component';
 import { LojaCompraRealizadaComponent } from './components/loja/efetivar/loja-compra-realizada/loja-compra-realizada.component';
+import { NotificacaoComponent } from './components/notificacao/Notificacao.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: "pesquisar-produto", component: PesquisaProdutoComponent },
   { path: "loja-produto", component: LojaProdutoComponent },
   { path: "loja-efetivar", component: LojaEfetivarCompraComponent },
-  { path: "compra-realizada-sucesso", component: LojaCompraRealizadaComponent }
+  { path: "compra-realizada-sucesso", component: LojaCompraRealizadaComponent },
+  { path: "notificacao", component: NotificacaoComponent }
 ];
 
 @NgModule({

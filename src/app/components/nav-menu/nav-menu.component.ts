@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { CarrinhoComprasComponent } from '../loja/carrinho-compras/carrinho-compras.component';
 import { Router } from '@angular/router';
+import { NotificacaoComponent } from '../notificacao/Notificacao.component';
+import { NodeWithI18n } from '@angular/compiler';
+import { NotificacaoService } from 'src/app/services/notificacao/notificacao.service';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { ErrorService } from 'src/app/services/error/error.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -11,11 +16,13 @@ import { Router } from '@angular/router';
 export class NavMenuComponent implements OnInit {
   isExpanded = false;
   public carrinhoCompras: CarrinhoComprasComponent;
+  public notificacao: NotificacaoComponent;
 
-  constructor(private router: Router, private usuarioService: UsuarioService) { }
+  constructor(private router: Router, private usuarioService: UsuarioService, private notificacaoService: NotificacaoService) { }
 
   ngOnInit() {
     this.carrinhoCompras = new CarrinhoComprasComponent();
+    this.notificacao = new NotificacaoComponent(this.notificacaoService);
   }
 
   collapse() {
@@ -41,8 +48,27 @@ get usuario() {
   return this.usuarioService.usuario;
 }
 
-public temItensCarrinhoCompras() : boolean {
+public temItensCarrinhoCompras(): boolean {
   return this.carrinhoCompras.temItensCarrinhoCompras();
+}
+
+public adicionarItemCarrinhoCompras(){
+  
+  var array = this.notificacao.itensPedido();
+  
+  console.log(array);
+ 
+  array.forEach(element => {
+
+    this.carrinhoCompras.adicionar(element);
+  });
+
+  sessionStorage.setItem("produtosNotification", "");
+
+}
+
+public temNotificacoes(): boolean {
+  return this.notificacao.temNotificacoes();
 }
 
 }

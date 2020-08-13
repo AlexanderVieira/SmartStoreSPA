@@ -62,7 +62,7 @@ export class LojaEfetivarCompraComponent implements OnInit {
                 console.log(pedidoId);
                 sessionStorage.setItem("pedidoId", pedidoId.toString());
                 this.produtos = [];
-                this.carrinhoCompras.limparCarrinhoCompras();                   
+                this.carrinhoCompras.limparCarrinhoCompras();
                 this.router.navigate(["/compra-realizada-sucesso"]);
             },
             e => {
@@ -75,13 +75,13 @@ export class LojaEfetivarCompraComponent implements OnInit {
 
     let pedido = new Pedido();
     pedido.usuarioId = this.usuarioService.usuario.id;
-    pedido.cep = "122323";
-    pedido.cidade = "Sao Paulo";        
-    pedido.estado = "Sao Paulo ";
+    pedido.cep = "25.520-315";
+    pedido.cidade = "Rio de Janeiro";        
+    pedido.estado = "Rio de Janeiro";
     pedido.dataEntrega = new Date();
     pedido.formaPagamentoId = 1;
     pedido.numeroEndereco = "12";
-    pedido.enderecoCompleto = "akjdhajsdhajshdjas";
+    pedido.enderecoCompleto = "Rua A";
 
     this.produtos = this.carrinhoCompras.obterProdutos();
 

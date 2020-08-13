@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Pedido } from 'src/app/model/Pedido';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn:'root'
@@ -10,9 +11,9 @@ export class PedidoService {
 
    public _baseUrl: string;
 
-constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) { 
+constructor(private http: HttpClient) {
 
-    this._baseUrl = baseUrl;
+    this._baseUrl = environment.BASE_URL;
 }
 
 get headers(): HttpHeaders {

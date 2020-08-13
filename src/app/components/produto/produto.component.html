@@ -17,6 +17,24 @@
   </div>
 </div>
 
+<label for="inputNome" class="sr-only">TAG RFID</label>
+<input type="text" id="inputTagRfid"
+       name="tagProduto"
+       placeholder="TagRFID do produto"
+       class="form-control mb-2 col-md-4"
+       [ngClass]="{
+        'is-invalid': tag.invalid && (tag.dirty || tag.touched),
+         'is-valid': tag.valid && (tag.dirty || tag.touched)
+       }"
+       [(ngModel)]="produto.tagRFID"
+       #tag="ngModel"
+       required />
+<div class="invalid-feedback mb-2" *ngIf="tag.invalid && (tag.dirty || tag.touched) ">
+  <div *ngIf="tag.errors.required">
+    TAG do produto é de preenchimento obrigatório
+  </div>
+</div>
+
 <label for="inputDescricao" class="sr-only">Descrição</label>
 <input type="text" id="inputDescricao"
        name="descricaoProduto"

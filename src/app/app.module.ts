@@ -17,10 +17,12 @@ import { LojaCompraRealizadaComponent } from './components/loja/efetivar/loja-co
 import { LojaEfetivarCompraComponent } from './components/loja/efetivar/loja-efetivar-compra/loja-efetivar-compra.component';
 import { LojaPesquisaComponent } from './components/loja/pesquisa/loja-pesquisa.component';
 import { LojaProdutoComponent } from './components/loja/produto/loja-produto.component';
+import { NotificacaoComponent } from './components/notificacao/Notificacao.component';
 
 import { UsuarioService } from './services/usuario/usuario.service';
 import { ProdutoService } from './services/produto/produto.service';
 import { PedidoService } from './services/pedido/pedido.service';
+import { NotificacaoService } from './services/notificacao/notificacao.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { PedidoService } from './services/pedido/pedido.service';
     LojaPesquisaComponent,
     LojaProdutoComponent,
     ProdutoComponent,
-    PesquisaProdutoComponent
+    PesquisaProdutoComponent,
+    NotificacaoComponent
    ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -44,7 +47,7 @@ import { PedidoService } from './services/pedido/pedido.service';
     FormsModule
     //TruncateModule,
   ],
-  providers: [UsuarioService, ProdutoService, PedidoService],
+  providers: [UsuarioService, ProdutoService, PedidoService, NotificacaoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

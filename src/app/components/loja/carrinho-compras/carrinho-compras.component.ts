@@ -19,11 +19,11 @@ export class CarrinhoComprasComponent implements OnInit {
     var produtoLocalStorage = localStorage.getItem("produtoLocalStorage");
     if (!produtoLocalStorage) {
         // se nao existir nada dentro do localStorage
-        this.produtos.push(produto);            
+        this.produtos.push(produto);
     } else {
         // se ja existir pelo menos um unico item armazenado na sessao(localLocalStorage)
         this.produtos = JSON.parse(produtoLocalStorage);
-        this.produtos.push(produto);            
+        this.produtos.push(produto);
     }
 
     localStorage.setItem("produtoLocalStorage", JSON.stringify(this.produtos));
@@ -51,7 +51,7 @@ public atualizar(produtos: Produto[]) {
 
 public temItensCarrinhoCompras(): boolean {
   var itens = this.obterProdutos();
-  return (itens.length > 0);            
+  return (itens.length > 0);
 }
 
 public limparCarrinhoCompras() {
