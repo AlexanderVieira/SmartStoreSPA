@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from 'src/app/services/produto/produto.service';
 import { Router } from '@angular/router';
 import { Produto } from 'src/app/model/Produto';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pesquisa-produto',
@@ -11,8 +12,9 @@ import { Produto } from 'src/app/model/Produto';
 export class PesquisaProdutoComponent implements OnInit {
 
   public produtos: Produto[];
+  public _baseUrl: string;
 
-  constructor(private produtoService: ProdutoService, private router: Router) {
+  constructor(private produtoService: ProdutoService, private router: Router) {    
     
     this.produtoService.obterTodosProdutos()
       .subscribe(
@@ -27,6 +29,7 @@ export class PesquisaProdutoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._baseUrl = environment.BASE_URL;
   }
 
   public adicionarProduto() {

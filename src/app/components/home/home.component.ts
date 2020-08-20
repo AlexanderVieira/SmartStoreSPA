@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificacaoComponent } from '../notificacao/Notificacao.component';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public notificacao: NotificacaoComponent;
+
+  constructor() { 
+    this.notificacao = new NotificacaoComponent();
+  }
 
   ngOnInit() {
+    
   }
 
 }

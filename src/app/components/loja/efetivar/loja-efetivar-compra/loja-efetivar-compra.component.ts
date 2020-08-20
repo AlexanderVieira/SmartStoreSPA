@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { PedidoService } from 'src/app/services/pedido/pedido.service';
 import { Pedido } from 'src/app/model/Pedido';
 import { ItemPedido } from 'src/app/model/itemPedido';
+import { environment } from 'src/environments/environment';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-loja-efetivar-compra',
@@ -17,6 +19,7 @@ export class LojaEfetivarCompraComponent implements OnInit {
   public carrinhoCompras: CarrinhoComprasComponent;
   public produtos: Produto[];
   public total: number;
+  public _baseUrl: string;
 
   constructor(private usuarioService: UsuarioService, private pedidoService: PedidoService, private router: Router) { }
 
@@ -25,6 +28,7 @@ export class LojaEfetivarCompraComponent implements OnInit {
     this.carrinhoCompras = new CarrinhoComprasComponent();
     this.produtos = this.carrinhoCompras.obterProdutos();
     this.atualizarTotal();
+    this._baseUrl = environment.BASE_URL;
 
   }
 
@@ -62,7 +66,7 @@ export class LojaEfetivarCompraComponent implements OnInit {
                 console.log(pedidoId);
                 sessionStorage.setItem("pedidoId", pedidoId.toString());
                 this.produtos = [];
-                this.carrinhoCompras.limparCarrinhoCompras();
+                this.carrinhoCompras.limparCarrinhoCompras();                
                 this.router.navigate(["/compra-realizada-sucesso"]);
             },
             e => {
@@ -72,9 +76,13 @@ export class LojaEfetivarCompraComponent implements OnInit {
   }
 
   public criarPedido(): Pedido {
-
+    let usuarioId = this.usuarioService.usuario.id;
+    if (usuarioId == null || usuarioId === undefined) {
+      let usuario_json = sessionStorage.getItem("usuario-autenticado");
+      usuarioId = JSON.parse(usuario_json);
+    }
     let pedido = new Pedido();
-    pedido.usuarioId = this.usuarioService.usuario.id;
+    pedido.usuarioId = usuarioId;
     pedido.cep = "25.520-315";
     pedido.cidade = "Rio de Janeiro";        
     pedido.estado = "Rio de Janeiro";

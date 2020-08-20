@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HubConnectionBuilder, HubConnection, LogLevel } from '@aspnet/signalr';
-import { NotificacaoService } from 'src/app/services/notificacao/notificacao.service';
 import { environment } from 'src/environments/environment';
 import { Produto } from 'src/app/model/Produto';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { Usuario } from 'src/app/model/Usuario';
+
 
 @Component({
   selector: 'app-notificacao',
@@ -18,15 +20,15 @@ export class NotificacaoComponent implements OnInit {
   public length: number;
   public produtos: Produto[];  
 
-  constructor(private notificacaoService: NotificacaoService) { 
+  constructor() { 
     this.messages = [];
     this.produtos = [];
-    this._baseUrl = environment.BASE_URL;
+    this._baseUrl = environment.BASE_URL;    
 
   }
 
   ngOnInit() {
-
+    
     this._connection = new HubConnectionBuilder()
       .configureLogging(LogLevel.Debug)
       .withUrl(`${this._baseUrl}notificacao`)
@@ -36,18 +38,18 @@ export class NotificacaoComponent implements OnInit {
         console.log('notification started');
       });
 
-      this._connection.on('notificationStartedChanged', data => {
-        
-        // this.messages.push(data);
-        // length = this.messages.length; 
-        
-        data.forEach(element => {
-            this.produtos.push(element);
-        });
-        sessionStorage.setItem("produtosNotification", JSON.stringify(this.produtos));
-        console.log(this.produtos);        
-        length = data.length;
-        
+      this._connection.on('notificationStartedChanged', data => {        
+                
+        const usuario: Usuario = data["001"].usuario;
+        const carrinhoId = data["001"].carrinhoId;
+        const produtos: Produto[] = data["001"].produtos;             
+
+        console.log("Usuário ID: " + usuario);
+        console.log("Carrinho de Compras: " + carrinhoId);        
+        console.log("Lista de produtos: ", produtos);
+        sessionStorage.setItem("usuario-autenticado", JSON.stringify(usuario));
+        this.adicionarProdutoSessionNotification(produtos);
+
       });
 
       this._connection.on('notificationEnded', data => {
@@ -61,34 +63,29 @@ export class NotificacaoComponent implements OnInit {
 
   }
 
-  public temNotificacoes(): boolean {
-    //let notifications = this.messages;
-    console.log(length)
-    return (length > 0);
+  public temNotificacoes(): boolean {    
+    var produtos = this.getItens(); 
+    console.log(produtos.length > 0) 
+        return (produtos.length > 0);
   }
 
-  public itensPedido(): Produto[]{
+  public getItens(): Produto[]{    
+    var produtos: Produto[] = [];
+    var produtosSessionStorage = sessionStorage.getItem("produtosNotification");    
+    if (produtosSessionStorage) {
+      produtos = JSON.parse(produtosSessionStorage);      
+      return produtos;
+    }
+    return produtos;
+  }
+  
+  public adicionarProdutoSessionNotification(produtos: Produto[]){
     
-    /* var produto = new Produto();    
-    produto.descricao = "Smartphone A10";
-    produto.preco = 1799.90;    
-    this.produtos.push(produto); */
-
-    var produtosSessionStorage = sessionStorage.getItem("produtosNotification");
-    console.log(produtosSessionStorage);
-    if (produtosSessionStorage) {      
-      
-      this.produtos = JSON.parse(produtosSessionStorage);
-      console.log(this.produtos);
-      return this.produtos;
-
-    }    
-    
-    return this.produtos = [];
+    sessionStorage.setItem("produtosNotification", JSON.stringify(produtos)); 
 
   }
-
-  public notificar(){
+  
+  /* public notificar(){
 
     this.messages = [];
     //var ids: any[] = [1, 2];
@@ -112,9 +109,9 @@ export class NotificacaoComponent implements OnInit {
         console.error(error);
       }
     )
-  }
+  } */
 
-  public startJob() {
+  /* public startJob() {
     this.messages = [];
     this.notificacaoService.startJob().subscribe(
       data => {
@@ -124,6 +121,6 @@ export class NotificacaoComponent implements OnInit {
         console.error(error);
       }
     );
-  }  
+  }   */
 
 }

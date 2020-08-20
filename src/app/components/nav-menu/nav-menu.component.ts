@@ -7,6 +7,7 @@ import { NodeWithI18n } from '@angular/compiler';
 import { NotificacaoService } from 'src/app/services/notificacao/notificacao.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ErrorService } from 'src/app/services/error/error.service';
+import { Produto } from 'src/app/model/Produto';
 
 @Component({
   selector: 'app-nav-menu',
@@ -17,12 +18,13 @@ export class NavMenuComponent implements OnInit {
   isExpanded = false;
   public carrinhoCompras: CarrinhoComprasComponent;
   public notificacao: NotificacaoComponent;
+  public produtos: Produto[];
 
-  constructor(private router: Router, private usuarioService: UsuarioService, private notificacaoService: NotificacaoService) { }
+  constructor(private router: Router, private usuarioService: UsuarioService) { }
 
   ngOnInit() {
     this.carrinhoCompras = new CarrinhoComprasComponent();
-    this.notificacao = new NotificacaoComponent(this.notificacaoService);
+    this.notificacao = new NotificacaoComponent();
   }
 
   collapse() {
@@ -53,22 +55,18 @@ public temItensCarrinhoCompras(): boolean {
 }
 
 public adicionarItemCarrinhoCompras(){
-  
-  var array = this.notificacao.itensPedido();
-  
-  console.log(array);
- 
-  array.forEach(element => {
 
+  const itens = this.notificacao.getItens();
+  itens.forEach(element => {
     this.carrinhoCompras.adicionar(element);
   });
-
-  sessionStorage.setItem("produtosNotification", "");
+  sessionStorage.setItem('produtosNotification', '');
+  this.temNotificacoes();
 
 }
 
 public temNotificacoes(): boolean {
-  return this.notificacao.temNotificacoes();
+  return this.notificacao.temNotificacoes();  
 }
 
 }

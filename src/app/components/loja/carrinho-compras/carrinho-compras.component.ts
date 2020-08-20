@@ -42,6 +42,7 @@ public removerProduto(produto: Produto) {
       this.produtos = JSON.parse(produtoLocalStorage);
       this.produtos = this.produtos.filter(p => p.id != produto.id);
       localStorage.setItem("produtoLocalStorage", JSON.stringify(this.produtos));
+      
   }
 }
 
@@ -55,7 +56,7 @@ public temItensCarrinhoCompras(): boolean {
 }
 
 public limparCarrinhoCompras() {
-  localStorage.setItem("produtoLocaStorage", "");
+  localStorage.setItem("produtoLocalStorage", "");
 }
 
 }

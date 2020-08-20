@@ -3,6 +3,7 @@ import { Produto } from 'src/app/model/Produto';
 import { CarrinhoComprasComponent } from '../carrinho-compras/carrinho-compras.component';
 import { ProdutoService } from 'src/app/services/produto/produto.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-loja-produto',
@@ -13,11 +14,15 @@ export class LojaProdutoComponent implements OnInit {
 
   public produto: Produto;
   public carrinhoCompras: CarrinhoComprasComponent;
+  public _baseUrl: string;
 
-  constructor(private produtoService: ProdutoService, private router: Router) { }
+  constructor(private produtoService: ProdutoService, private router: Router) {
+    
+   }
 
   ngOnInit() {
-
+    
+    this._baseUrl = environment.BASE_URL;
     this.carrinhoCompras = new CarrinhoComprasComponent();
         var produtoDetalhe = sessionStorage.getItem('produtoDetalhe');
         if (produtoDetalhe) {

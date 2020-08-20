@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: "loja-produto", component: LojaProdutoComponent },
   { path: "loja-efetivar", component: LojaEfetivarCompraComponent },
   { path: "compra-realizada-sucesso", component: LojaCompraRealizadaComponent },
-  { path: "notificacao", component: NotificacaoComponent }
+  { path: "notificacao", component: NotificacaoComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
