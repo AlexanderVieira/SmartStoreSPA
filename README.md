@@ -3,6 +3,16 @@
 Objetivo: integrar com Sistema Digital Embarcado.
 Proposta: automatizar processo de pagamento e reduzir filas nos pontos de vendas.
 
+Projeto demo, Loja virtual simples desenvolvido em Angular 9 (SPA).
+Back-End: ASP.NET Core Web Api Rest 2.1;
+Integração com Sistema Digital Embarcado:
+- NodeMCU ESP32 WEB SERVER MASTER;
+- NodeMCU ESP32 STATION SLAVE;
+- Sensor RFID para leitura das TAG;
+- Migration (MySql);
+- Swagger;
+- SignalR;
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
 
 ## Development server
