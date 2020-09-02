@@ -18,7 +18,8 @@ export class NotificacaoComponent implements OnInit {
   public messages: string[];  
   public _baseUrl: string;
   public length: number;
-  public produtos: Produto[];  
+  public produtos: Produto[]; 
+  public usuario: Usuario; 
 
   constructor() { 
     this.messages = [];
@@ -44,7 +45,7 @@ export class NotificacaoComponent implements OnInit {
         const carrinhoId = data["001"].carrinhoId;
         const produtos: Produto[] = data["001"].produtos;             
 
-        console.log("Usuário ID: " + usuario);
+        console.log("Usuário ID: " + usuario.id);
         console.log("Carrinho de Compras: " + carrinhoId);        
         console.log("Lista de produtos: ", produtos);
         sessionStorage.setItem("usuario-autenticado", JSON.stringify(usuario));
