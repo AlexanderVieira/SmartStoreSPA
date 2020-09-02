@@ -9,7 +9,7 @@
                 style="width:200px; height:200px;" />
            <div class="card-body">
              <div class="card-text">{{p.descricao}}</div>
-             <h5 class="h5">{{p.preco}}</h5>
+             <h5 class="h5">{{p.preco | currency : "BRL":true}}</h5>
            </div>
          </div>
        </a>

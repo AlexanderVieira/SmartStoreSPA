@@ -1,7 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt);
+
 //import { TruncateModule } from 'ng2-truncate';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -47,7 +53,7 @@ import { NotificacaoService } from './services/notificacao/notificacao.service';
     FormsModule
     //TruncateModule,
   ],
-  providers: [UsuarioService, ProdutoService, PedidoService, NotificacaoService],
+  providers: [UsuarioService, ProdutoService, PedidoService, NotificacaoService,{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

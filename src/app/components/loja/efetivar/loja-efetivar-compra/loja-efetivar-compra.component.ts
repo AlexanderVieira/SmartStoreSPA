@@ -8,6 +8,7 @@ import { Pedido } from 'src/app/model/Pedido';
 import { ItemPedido } from 'src/app/model/itemPedido';
 import { environment } from 'src/environments/environment';
 import { isUndefined } from 'util';
+import { NotificacaoComponent } from 'src/app/components/notificacao/Notificacao.component';
 
 @Component({
   selector: 'app-loja-efetivar-compra',
@@ -20,6 +21,7 @@ export class LojaEfetivarCompraComponent implements OnInit {
   public produtos: Produto[];
   public total: number;
   public _baseUrl: string;
+  
 
   constructor(private usuarioService: UsuarioService, private pedidoService: PedidoService, private router: Router) { }
 

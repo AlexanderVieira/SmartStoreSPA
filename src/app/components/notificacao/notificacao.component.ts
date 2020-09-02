@@ -35,11 +35,19 @@ export class NotificacaoComponent implements OnInit {
       .withUrl(`${this._baseUrl}notificacao`)
       .build();
 
-      this._connection.on('notificationStarted', data => {
+     /*  this._connection.on('notificationStarted', data => {
         console.log('notification started');
-      });
+      }); */
 
-      this._connection.on('notificationStartedChanged', data => {        
+      /* this._connection.on('notificationStartedChanged', data => {
+        console.log('notification Started Changed');
+      }); */
+
+      /* this._connection.on('notificationEnded', data => {
+        console.log('notification ended');
+      }); */
+
+      this._connection.on('notificationPostStarted', data => {        
                 
         const usuario: Usuario = data["001"].usuario;
         const carrinhoId = data["001"].carrinhoId;
@@ -51,11 +59,7 @@ export class NotificacaoComponent implements OnInit {
         sessionStorage.setItem("usuario-autenticado", JSON.stringify(usuario));
         this.adicionarProdutoSessionNotification(produtos);
 
-      });
-
-      this._connection.on('notificationEnded', data => {
-        console.log('notification ended');
-      });
+      });     
 
       this._connection
       .start()
